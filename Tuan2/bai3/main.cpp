@@ -124,9 +124,6 @@ void DSNV::xoaNhanVien(string ms) {
 };
 
 
-
-
-
 int main() {
     DSNV ds;
     ds.nhapDs();
@@ -135,6 +132,6 @@ int main() {
     cout << "Tim kiem Nhan vien: " << endl;
     ds.timKiem("13").xuat();
     cout << "Da xoa nhan vien: " << endl;
-    ds.xoaNhanVien("13");
+    ds.xoaNhanVien("14");
     ds.xuatDs();
 }
