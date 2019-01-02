@@ -1,9 +1,52 @@
 #include <iostream>
 #include <fstream>
 
+#define path "output1.txt"
 
 using namespace std;
 
+// ===== prototype =====
+
+int taoNgauNhien(int arr[50][50], int &n, int &m);
+void xuatMang(int arr[50][50], int n, int m);
+void xoaDong(int arr[50][50], int &n, int &m, int x);
+void xoaCot(int arr[50][50], int &n, int &m, int x);
+bool doiXung(int arr[50][50], int n, int m);
+bool cheoChinh(int arr[50][50], int n, int m, int p1, int p2);
+bool cheoPhu(int arr[50][50], int n, int m, int p1, int p2);
+bool ngangDoc(int arr[50][50], int n, int m, int p1, int p2);
+void soHoangHau(int arr[50][50], int n, int m);
+
+
+
+
+
+
+
+
+
+
+int main() {
+    int arr[50][50];
+/*
+    {
+        {2, 2, 7},
+        {2, 1, 6},
+        {5, 6, 2}
+    }
+*/
+    int n, m;
+    taoNgauNhien(arr, n, m);
+    //xoaCot(arr, n, m, 1);
+    //cout << "doi xung: " << doiXung(arr, n, m) << endl;
+    //cout << "check: " << ngangDoc(arr, n, m, 2, 2) << endl;
+    soHoangHau(arr, n, m);
+
+    xuatMang(arr, n, m);
+}
+
+
+// ===== function =====
 
 int taoNgauNhien(int arr[50][50], int &n, int &m) {
     cout << "Nhap n: ";
@@ -16,6 +59,7 @@ int taoNgauNhien(int arr[50][50], int &n, int &m) {
         }
     }
 }
+
 void xuatMang(int arr[50][50], int n, int m) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
@@ -77,8 +121,6 @@ bool cheoChinh(int arr[50][50], int n, int m, int p1, int p2) {
     return 1;
 }
 
-
-
 bool cheoPhu(int arr[50][50], int n, int m, int p1, int p2) {
     int x = arr[p1][p2];
 
@@ -132,11 +174,9 @@ bool ngangDoc(int arr[50][50], int n, int m, int p1, int p2) {
     return 1;
 }
 
-
-
 void soHoangHau(int arr[50][50], int n, int m) {
     ofstream outfile;
-    outfile.open("output1.txt");
+    outfile.open(path);
 
     for (int i =0 ; i < n; i++) {
         for (int j = 0; j < m ; j++) {
@@ -147,23 +187,4 @@ void soHoangHau(int arr[50][50], int n, int m) {
     }
 
     outfile.close();
-}
-
-int main() {
-    int arr[50][50];
-/*
-    {
-        {2, 2, 7},
-        {2, 1, 6},
-        {5, 6, 2}
-    }
-*/
-    int n, m;
-    taoNgauNhien(arr, n, m);
-    //xoaCot(arr, n, m, 1);
-    //cout << "doi xung: " << doiXung(arr, n, m) << endl;
-    //cout << "check: " << ngangDoc(arr, n, m, 2, 2) << endl;
-    soHoangHau(arr, n, m);
-
-    xuatMang(arr, n, m);
 }
