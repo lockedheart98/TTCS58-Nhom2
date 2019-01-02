@@ -1,7 +1,6 @@
 # depslib dependency file v1.0
-1546419146 source:/home/traeh/Projects/TTCS58-Nhom2/Tuan2/bai2/main.cpp
+1546434314 source:/home/traeh/Projects/TTCS58-Nhom2/Tuan2/bai2/main.cpp
 	<iostream>
 	<string>
-	<cstring>
 	<stack>
 
