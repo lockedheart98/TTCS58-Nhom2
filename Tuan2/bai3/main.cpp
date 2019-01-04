@@ -3,6 +3,10 @@
 #include <cstdlib>
 #include <fstream>
 #include <vector>
+#include <iomanip>
+
+#include <iterator>
+#include <sstream>
 
 using namespace std;
 
@@ -16,6 +20,7 @@ class NhanVien {
     int heSoLuong;
     string chucVu;
     int heSoCV;
+    string thang, nam;
     static int luongCoBan;
 public:
     void nhap();
@@ -26,21 +31,39 @@ public:
 
 int NhanVien::luongCoBan = 1100;
 
+
+
+
 void NhanVien::nhap() {
     string s;
-    getline(f, s); maSo = s;
-    getline(f, s); hoTen = s;
-    getline(f, s); heSoLuong = atoi(s.c_str());
-    getline(f, s); chucVu = s;
-    getline(f, s); heSoCV = atoi(s.c_str());
+    string line;
+
+    stringstream ss;
+
+    getline(f, line);
+    ss.str(line);
+
+
+    getline(ss, s, ';'); maSo = s;
+    getline(ss, s, ';'); hoTen = s;
+    getline(ss, s, ';'); heSoLuong = atoi(s.c_str());
+    getline(ss, s, ';'); chucVu = s;
+    getline(ss, s, ';'); heSoCV = atoi(s.c_str());
+    getline(ss, s, ';'); thang = s;
+    getline(ss, s, ';'); nam = s;
 }
 
 void NhanVien::xuat() {
-    cout << "Ma so: " << maSo << endl;
-    cout << "Ho ten: " << hoTen << endl;
-    cout << "He so luong: " << heSoLuong << endl;
-    cout << "Chuc vu: " << chucVu << endl;
-    cout << "He so chuc vu: " << heSoCV << endl;
+    cout << setw(10) << left << maSo;
+    cout << setw(20) << left << hoTen ;
+    cout << setw(15) << left << heSoLuong;
+    cout << setw(10) << left << chucVu;
+    cout << setw(10) << left << heSoCV;
+    cout << setw(15) << left << tinhLuong();
+    cout << setw(6) << left << thang;
+    cout << setw(6) << left << nam;
+    cout << endl;
+
 }
 
 int NhanVien::tinhLuong() {
@@ -76,9 +99,17 @@ void DSNV::nhapDs() {
 }
 void DSNV::xuatDs() {
     cout << "DANH SACH NHAN VIEN" << endl;
+    cout << setw(10) << left << "Ma so";
+    cout << setw(20) << left << "Ho ten" ;
+    cout << setw(15) << left << "He so luong";
+    cout << setw(10) << left << "Chuc vu";
+    cout << setw(10) << left << "He so CV";
+    cout << setw(15) << left << "Luong";
+    cout << setw(6) << left << "Thang";
+    cout << setw(6) << left << "Nam";
+    cout << endl;
     for (int i = 0; i < ds.size(); i++) {
         ds[i].xuat();
-        cout << "=====" << endl;
     }
 }
 
@@ -95,12 +126,33 @@ void DSNV::inLuongTangDan() {
                 swap(arr[j], arr[j+1]);
         }
 
-    cout << "Bang Luong: " << endl;
+    cout << "Sap Xep Theo Luong: " << endl;
+    cout << setw(10) << left << "Ma so";
+    cout << setw(20) << left << "Ho ten" ;
+    cout << setw(15) << left << "He so luong";
+    cout << setw(10) << left << "Chuc vu";
+    cout << setw(10) << left << "He so CV";
+    cout << setw(15) << left << "Luong";
+    cout << setw(6) << left << "Thang";
+    cout << setw(6) << left << "Nam";
+    cout << endl;
+
     for (int i = 0; i < ds.size(); i++) {
+        cout << setw(10) << left << ds[arr[i]].maSo;
+        cout << setw(20) << left << ds[arr[i]].hoTen ;
+        cout << setw(15) << left << ds[arr[i]].heSoLuong;
+        cout << setw(10) << left << ds[arr[i]].chucVu;
+        cout << setw(10) << left << ds[arr[i]].heSoCV;
+        cout << setw(15) << left << ds[arr[i]].tinhLuong();
+        cout << setw(6) << left << ds[arr[i]].thang;
+        cout << setw(6) << left << ds[arr[i]].nam;
+        cout << endl;
+/*
         cout << "Ma so: " << ds[arr[i]].maSo << endl;
         cout << "Ho ten: " << ds[arr[i]].hoTen << endl;
         cout << "Luong: " << ds[arr[i]].tinhLuong() << endl;
         cout << "=====" << endl;
+*/
     }
 
 }

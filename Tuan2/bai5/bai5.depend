@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1546441226 source:/home/traeh/Projects/TTCS58-Nhom2/Tuan2/bai5/main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	<graphics.h>
+

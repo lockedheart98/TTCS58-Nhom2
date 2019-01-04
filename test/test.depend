@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1546576588 source:/home/traeh/Projects/TTCS58-Nhom2/test/main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+	<iterator>
+	<sstream>
+
