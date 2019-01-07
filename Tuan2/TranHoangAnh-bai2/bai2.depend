@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1546697658 source:/home/traeh/Projects/TTCS58-Nhom2/Tuan2/bai2/main.cpp
+	<iostream>
+	<string>
+	<stack>
+	"bignum.h"
+
+1546700490 /home/traeh/Projects/TTCS58-Nhom2/Tuan2/bai2/bignum.h
+	<iostream>
+	<string>
+	<stack>
+
