@@ -19,17 +19,25 @@ void xuatMang(int arr[], int n) {
 
 
 
-void timNgauNhien(int arr[], int n, int x) {
-    int check[n];
-    for (int i = 0; i < n; i++) {
+void timNgauNhien(int arr[], int m) {
+    int n;
+    do {
+        cout << "nhap n: ";
+        cin >> n;
+    } while(n >= m);
+
+
+    int check[m];
+
+    for (int i = 0; i < m; i++) {
         check[i] = 0;
     }
     int dem = 0;
     int tam;
-    while(dem < x) {
-        tam = rand() % n;
+    while(dem < n) {
+        tam = rand() % m;
 
-        if (!check[tam]) {
+        if (!check[tam]) {  // kiem tra de khong lap lai vi tri da xuat
             cout << arr[tam] << " ";
             dem++;
             check[tam] = 1;
@@ -42,14 +50,11 @@ int main() {
     int n, m;
     cout << "nhap m: ";
     cin >> m;
-    do {
-        cout << "nhap n: ";
-        cin >> n;
-    } while(n >= m);
+
 
     int arr[m];
     taoNgauNhien(arr, m);
     xuatMang(arr, m);
-    timNgauNhien(arr, m, n);
+    timNgauNhien(arr, m);
 
 }
