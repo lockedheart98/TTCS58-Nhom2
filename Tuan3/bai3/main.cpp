@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <iomanip>
+#include <string>
 
 #include <iterator>
 #include <sstream>
@@ -33,7 +34,7 @@ class GiaoDich {
     bool loaiGD; // 1 = rut, 0 = gui
     double soLuong;
 public:
-    GiaoDich() {}
+    GiaoDich() {} // default contructor
     GiaoDich(string id, bool loaiGD, double soLuong) {
         this->id = id;
         this->loaiGD = loaiGD;
@@ -46,6 +47,7 @@ class XuLy {
     vector<KhachHang> dskh;
     vector<GiaoDich> dsgd;
 public:
+    string createId();
     void formInputKH(); // *
     void formInputGD(bool loaiGD); // *
     bool themKH(KhachHang kh); // * them 1 khach hang
@@ -69,6 +71,7 @@ int main() {
 
     int opt = 99;
     do {
+        cout << "===== MENU THUC HIEN =====" << endl;
         cout << "1. Dang ky tai khoan" << endl;
         cout << "2. Gui tien" << endl;
         cout << "3. Rut tien" << endl;
@@ -93,12 +96,14 @@ int main() {
                 break;
             case 5: {
                     string maSo;
-                    cout << "nhap ma so" << endl;
+                    cout << "nhap ma so: ";
                     getline(cin, maSo);
                     xl.inSaoKe(maSo);
                 }
                 break;
         }
+
+        cout << "==========================" << endl;
     } while(opt != 0);
 
 }
@@ -107,19 +112,25 @@ int main() {
 
 
     // === XuLy ===
+string XuLy::createId() {
+    int maxId = atoi(dskh[dskh.size() - 1].id.c_str());
+    maxId++;
+    string newId = to_string(maxId);
+    return newId;
+}
+
 void XuLy::formInputKH() {
     string maSo, hoTen;
 
-    cout << "nhap ma so: ";
-    getline(cin, maSo); // check maso || tao random
+    maSo = createId();
     cout << "nhap ho ten: ";
     getline(cin, hoTen);
 
     KhachHang kh(maSo, hoTen, 0);
-
+    cout << "new id: " << createId() << endl;
     if (themKH(kh)) {
-        cout << "Them thanh cong" << endl;
-    } else cout << "Khong thuc hien duoc" << endl;
+        cout << ">>>> Them thanh cong" << endl;
+    } else cout << ">>>> Khong thuc hien duoc" << endl;
 }
 
 void XuLy::formInputGD(bool loaiGD) {
@@ -134,8 +145,8 @@ void XuLy::formInputGD(bool loaiGD) {
     GiaoDich gd(maSo, loaiGD, soLuong);
 
     if (themGD(gd)) {
-        cout << "Them thanh cong" << endl;
-    } else cout << "Khong thuc hien duoc" << endl;
+        cout << ">>>> Gd thanh cong" << endl;
+    } else cout << ">>>> Khong thuc hien duoc" << endl;
 }
 
 bool XuLy::themKH(KhachHang kh) {

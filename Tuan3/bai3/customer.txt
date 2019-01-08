@@ -1,4 +1,7 @@
-1111;TranHoang A;20000
+1111;TranHoang A;15000
 2222;TranHoang B;13000
 3333;TranHoang C;14000
-3333;TranHoang D;15000
+4444;TranHoang D;15000
+5555;Tran Hoang E;45000
+6666;Tran Hoang F;0
+6667;Tran Hoang G;0
