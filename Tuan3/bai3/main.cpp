@@ -57,8 +57,10 @@ public:
     void inSaoKe(string mskh); // *
     void docFileKH(); // *
     void docFileGD(); // *
-    void ghiFileKH(); // *
+    void ghiFileKH2(KhachHang kh); // * tro toi cuoi file
+    void ghiFileKH(); // * Ghi de
     void ghiFileGD(); // *
+    void ghiFileGD2(GiaoDich gd);
 };
 
 
@@ -68,6 +70,7 @@ int main() {
     xl.docFileKH();
     xl.docFileGD();
     xl.inDSKH();
+
 
     int opt = 99;
     do {
@@ -127,7 +130,6 @@ void XuLy::formInputKH() {
     getline(cin, hoTen);
 
     KhachHang kh(maSo, hoTen, 0);
-    cout << "new id: " << createId() << endl;
     if (themKH(kh)) {
         cout << ">>>> Them thanh cong" << endl;
     } else cout << ">>>> Khong thuc hien duoc" << endl;
@@ -151,7 +153,7 @@ void XuLy::formInputGD(bool loaiGD) {
 
 bool XuLy::themKH(KhachHang kh) {
     dskh.push_back(kh);
-    ghiFileKH();
+    ghiFileKH2(kh);
 
     return 1;
 }
@@ -168,8 +170,8 @@ bool XuLy::themGD(GiaoDich gd) {
             }
 
             dsgd.push_back(gd);
-            ghiFileGD();
-            ghiFileKH();
+            ghiFileGD2(gd);
+            ghiFileKH(); // ghi de
             return 1;
         }
     }
@@ -271,9 +273,9 @@ void XuLy::docFileGD() {
 
 void XuLy::ghiFileKH() {
     ofstream outfile;
-    outfile.open(customer);
+    outfile.open(customer, fstream::out | fstream::app);
 
-    if (outfile.eof()) {
+    if (outfile.fail()) {
         cout << "Faild to open this file !" << endl;
     } else {
         for (int i = 0; i < dskh.size(); i++) {
@@ -284,16 +286,44 @@ void XuLy::ghiFileKH() {
     outfile.close();
 }
 
+void XuLy::ghiFileKH2(KhachHang kh) {
+    ofstream outfile;
+    outfile.open(customer, fstream::out | fstream::app);
+
+    if (outfile.fail()) {
+        cout << "Faild to open this file !" << endl;
+    } else {
+        outfile.seekp(0, ios_base::end);
+        outfile << kh.id << ";" << kh.hoTen << ";" << kh.soDu << endl;
+    }
+
+    outfile.close();
+}
+
 void XuLy::ghiFileGD() {
     ofstream outfile;
-    outfile.open(transaction);
+    outfile.open(transaction, fstream::out | fstream::app);
 
-    if (outfile.eof()) {
+    if (outfile.fail()) {
         cout << "Faild to open this file !" << endl;
     } else {
         for (int i = 0; i < dsgd.size(); i++) {
             outfile << dsgd[i].id << ";" << dsgd[i].loaiGD << ";" << dsgd[i].soLuong << endl;
         }
+    }
+
+    outfile.close();
+}
+
+void XuLy::ghiFileGD2(GiaoDich gd) {
+    ofstream outfile;
+    outfile.open(transaction, fstream::out | fstream::app);
+
+    if (outfile.fail()) {
+        cout << "Faild to open this file !" << endl;
+    } else {
+        outfile.seekp(0, ios_base::end);
+        outfile << gd.id << ";" << gd.loaiGD << ";" << gd.soLuong << endl;
     }
 
     outfile.close();
