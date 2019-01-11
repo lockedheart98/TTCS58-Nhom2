@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1547187990 source:/home/traeh/Projects/TTCS58-Nhom2/Tuan3/bai4/main.cpp
+	<iostream>
+	<vector>
+	<fstream>
+
