@@ -16,24 +16,26 @@ struct canh {
 void xuatMang2d(int arr[100][100], int n, int m);
 void readFile(int graph[100][100], int &V);
 void writeFile(vector<canh> result);
+int sum(vector<canh> result);
 bool isExist(int dinh[], int vt, canh tam);
 void findMin(vector<canh> &dsCanh, vector<canh> &result, int dinh[], int V, int &vt);
 void prim(int graph[100][100], int V);
 
 
 
-
-
-
-
-
-
-
-
 int main() {
     int graph[100][100];
-    int V;
+    int V; // kich thuoc mang ( so dinh )
 /*
+    Mo ta thuat toan prim theo cach giai tay
+
+    Cau tru thu muc
+    dong dau tien la so dinh
+    Các dòng sau là ma trận
+    Ma tran the hien khoang cach giua cac dinh
+    vd: graph[1][0] -> khoang cach giua 2 dinh [1,0] la: 2
+
+
     int graph[5][5] =   {
         {0, 2, 0, 6, 0},
         {2, 0, 3, 8, 5},
@@ -41,6 +43,15 @@ int main() {
         {6, 8, 0, 0, 9},
         {0, 5, 7, 9, 0}
     };
+
+    tuong duong cac canh:
+    [0,1] = 2
+    [0,3] = 6
+    [1,2] = 3
+    [1,3] = 8
+    [1,4] = 5
+    [2,4] = 7
+    [3,4] = 9
 */
     readFile(graph, V);
     xuatMang2d(graph, V, V);
@@ -60,7 +71,7 @@ void xuatMang2d(int arr[100][100], int n, int m) {
 }
 
 void readFile(int graph[100][100], int &V) {
-    ifstream inFile("input.txt");
+    ifstream inFile("input.txt"); // chuyen thanh input2.txt giai cay khung 2
 
     if (inFile.fail()) {
         cout << "Failed to open this file." << endl;
@@ -80,7 +91,14 @@ void writeFile(vector<canh> result) {
     for (int i = 0; i < result.size(); i++) {
         outFile << "[" << result[i].a << "," <<  result[i].b << "]" << ":" << result[i].value << endl;
     }
+    outFile << "Tong trong so: " << sum(result) << endl;
+}
 
+int sum(vector<canh> result) {
+    int sum = 0;
+    for (int i = 0; i < result.size(); i++)
+        sum += result[i].value;
+    return sum;
 }
 
 bool isExist(int dinh[], int vt, canh tam) {
@@ -102,6 +120,7 @@ bool isExist(int dinh[], int vt, canh tam) {
 
 void findMin(vector<canh> &dsCanh, vector<canh> &result, int dinh[], int V, int &vt) {
     int Min = 0;
+    // tim ra vi tri canh nho nhat
     for (int i = 0; i < dsCanh.size(); i++) {
         if (dsCanh[Min].value > dsCanh[i].value) {
             Min = i;
@@ -128,8 +147,7 @@ void findMin(vector<canh> &dsCanh, vector<canh> &result, int dinh[], int V, int 
     cout << "Loai canh ";
     cout << "[" << dsCanh[Min].a << "," << dsCanh[Min].b << "]";
     cout << " ra khoi danh sach" << endl;
-
-
+    cout << "Chon dinh " << dsCanh[Min].b << " de xet cac canh them vao." << endl;
 
     // loai bo canh nho nhat
     dsCanh.erase(dsCanh.begin() + Min);
@@ -169,6 +187,7 @@ void prim(int graph[100][100], int V) {
     for (int i = 0 ; i < result.size(); i++) {
         cout << "[" << result[i].a << "," << result[i].b << "] ";
     }
+    cout << endl << "Tong trong so: " << sum(result);
 
     writeFile(result);
 }
